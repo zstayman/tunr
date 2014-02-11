@@ -1,5 +1,16 @@
 <h1> Create a new User </h1>
 
+<% unless @user.nil? %>
+  <div id="errors">
+    <h3>ERRORS!</h3>
+    <ul>
+    <% @user.errors.messages.each do |field,error| %>
+      <li><strong><%= "#{field.capitalize}: #{error.first}!" %></strong></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form action="/users" method="POST">
   <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
   <label>

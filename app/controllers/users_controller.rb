@@ -1,13 +1,20 @@
 class UsersController < ApplicationController
-  self.before_action(:load_user, only: [:show, :destroy, :update, :edit])
+  self.before_action :load_user, only: [:show, :destroy, :update, :edit]
+
 
   def new
-    render(:new)
   end
 
   def create    
-    user = User.create(user_params)
-    redirect_to("/users/#{user.id}")
+    @user = User.create(user_params)
+    logger.debug @user.inspect
+    if @user.valid?
+      redirect_to("/users/#{@user.id}")
+    else
+      render(:new)
+      # error message??
+    end
+
   end
 
   def show
@@ -38,7 +45,7 @@ class UsersController < ApplicationController
       return {
         first_name: params[:first_name],
         last_name: params[:last_name],
-        dob: Date.parse(params[:dob]),
+        dob: params[:dob],
         gender: params[:gender],
         email: params[:email],
         facebook_link: params[:facebook_link],
