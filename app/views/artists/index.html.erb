@@ -1,0 +1,22 @@
+<h1>Artists</h1>
+
+<% @artists.each do |artist| %>
+
+<div>
+  <a href="/artists/<%= artist.id %>"><img src="<%= artist.photo_url %>" height=300 /></a>
+
+  <p class="caption"><a href="/artists/<%= artist.id %>"><%= artist.name %></a> <a href="/artists/<%= artist.id %>/edit">Edit Artist</a></p>
+</div>
+
+<form action="/artists/<%= artist.id %>" method="POST" >
+  <input type="hidden" name="_method" value="DELETE" />
+  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+  <button>Delete</button>
+
+</form>
+<% end %>
+<br>
+<a href="/artists/new">Add an Artist</a>
+
+
+
