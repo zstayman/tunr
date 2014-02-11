@@ -5,10 +5,8 @@ class UsersController < ApplicationController
     render(:new)
   end
 
-  def create
-    
+  def create    
     user = User.create(user_params)
-    binding.pry
     redirect_to("/users/#{user.id}")
   end
 
@@ -35,14 +33,26 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    return {
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      dob: Date.parse(params[:dob]),
-      gender: params[:gender],
-      email: params[:email],
-      facebook_link: params[:facebook_link],
-      password: params[:password]
-    }
+    
+    if params[:password].empty?
+      return {
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        dob: Date.parse(params[:dob]),
+        gender: params[:gender],
+        email: params[:email],
+        facebook_link: params[:facebook_link],
+      }
+    else
+      return {
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        dob: Date.parse(params[:dob]),
+        gender: params[:gender],
+        email: params[:email],
+        facebook_link: params[:facebook_link],
+        password: params[:password]
+      }
+    end
   end
 end
