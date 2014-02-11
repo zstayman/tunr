@@ -1,0 +1,9 @@
+<h1>Hi! <%= @user.first_name %> <%= @user.last_name %></h1>
+
+<a href="/users/<%= @user.id %>/edit">Update your Information</a>
+
+<form action="/users/<%= @user.id %>" method="POST" >
+  <input type="hidden" name="_method" value="DELETE" />
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+  <button>Delete your account</button>
+</form>
