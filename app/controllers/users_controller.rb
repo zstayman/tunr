@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
 
   def new
-    @type = "create"
     @user=User.new
   end
 
@@ -38,7 +37,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @type = "update"
   end
 
   private

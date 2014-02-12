@@ -5,7 +5,6 @@ class SongsController < ApplicationController
 
 
   def new
-    @type = "create"
     @song = Song.new
     render(:new)
   end
@@ -21,7 +20,6 @@ class SongsController < ApplicationController
   end
 
   def edit
-    @type = "update"
     render(:edit)
   end
 

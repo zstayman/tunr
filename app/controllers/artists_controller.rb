@@ -17,14 +17,12 @@ class ArtistsController < ApplicationController
     redirect_to artists_path
   end
 
-  def new
-    @type = "create"
+  def new  
     @artist=Artist.new
     
   end
 
   def edit
-    @type = "update"
     render(:edit)
   end
 

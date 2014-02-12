@@ -1,12 +1,18 @@
-<%= form_for @user, url: {action: @type}, html: {class: "nifty_form"} do |f| %>
-  <h3>First Name: <%= f.text_field :first_name %></h3>
-  <h3>Last Name: <%= f.text_field :last_name %></h3>
-  <h3>Date of Birth: <%= f.date_field :dob %></h3>
-  <h3>Gender:</h3>
+<%= form_for @user do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <%= f.label :dob %>
+  <%= f.date_field :dob %>
+  <%= f.label :gender %>
   <p>M: <%= f.radio_button :gender, "M" %></p>
   <p>F: <%= f.radio_button :gender, "F" %></p>
-  <h3>Email: <%= f.text_field :email %></h3>
-  <h3>Facebook Link: <%= f.text_field :facebook_link %></h3>
-  <h3>Password: <%= f.password_field :password %></h3>
-  <%= f.submit "Join Tunr" %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :facebook_link %>
+  <%= f.text_field :facebook_link %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit %>
 <% end %>
