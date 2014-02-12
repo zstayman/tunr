@@ -14,10 +14,10 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
       <button>Delete</button>
     </form>
-    <a href="/artists/<%= @artist.id %>/songs/<%= song.id %>/edit">Edit this Song </a>
+    <%= link_to("Edit this Song", edit_artist_song_path(@artist, song)) %><br>
   </li>
   <% end %>
 </ul>
 
-<a href="/artists">All Artists</a>
-<a href="/artists/<%= @artist.id %>/songs/new"> New Song</a>
+<%= link_to("All Artists", artists_path) %>
+<%= link_to("New Song", new_artist_song_path(@artist)) %>

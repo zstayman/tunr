@@ -1,46 +1,16 @@
 <h1> Update your Information </h1>
 
-<form action="/users/<%= @user.id %>" method="POST">
-  <input type="hidden" name="_method" value="patch">
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-  <label>
-    First Name:
-    <input type="text" name="first_name" value="<%= @user.first_name %>"/>
-  </label>
+<% unless @update_worked %>
+  <div id="errors">
+    <h3>ERRORS!</h3>
+    <ul>
+    <% @user.errors.messages.each do |field,error| %>
+      <li><strong><%= "#{field.capitalize}: #{error.first}!" %></strong></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-  <label>
-    Last Name:
-    <input type="text" name="last_name" value="<%= @user.last_name %>"/>
-  </label>
+<%= @type = "update" %>
 
-  <label>
-    Date of Birth: 
-    <input type="date" name="dob" value="<%= @user.dob %>"/>
-  </label>
-
-  <label>
-    Gender:
-    <label for="gender_male">M</label>
-    <input id="gender_male" type="radio" name="gender" value="M" <%= 'checked="true"' if @user.gender == "M"%> />
-    <label for="gender_female">F</label>
-    <input id="gender_female" type="radio" name="gender" value="F" <%= 'checked="true"' if @user.gender == "F"%> />
-  </label>
-
-  <label>
-    Email: 
-    <input type="email" name="email" value="<%= @user.email %>"/>
-  </label>
-
-  <label>
-    Facebook Link: 
-    <input type="text" name="facebook_link" value="<%= @user.facebook_link %>"/>
-  </label>
-
-  <label>
-    Password: 
-    <input type="password" name="password" />
-  </label>
-
-  <button>Thank you for updating</button>
-</form>
-
+<%= render "userform", local: {@type: type} %>

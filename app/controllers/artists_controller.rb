@@ -12,12 +12,14 @@ class ArtistsController < ApplicationController
   end
 
   def create
+    # binding.pry
     Artist.create(artist_params)
     redirect_to("/artists")
   end
 
   def new
-    render(:new)
+    @artist=Artist.new
+    
   end
 
   def edit
@@ -41,10 +43,8 @@ class ArtistsController < ApplicationController
   end
 
   def artist_params
-    return {
-      name: params[:name],
-      genre: params[:genre],
-      photo_url: params[:photo_url]
-    }
+    params.require(:artist).permit(:name, :genre, :photo_url)
   end
+
+
 end

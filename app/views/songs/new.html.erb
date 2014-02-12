@@ -1,17 +1,3 @@
 <h1> Create a new Song </h1>
-
-<form action="/artists/<%= params[:artist_id] %>/songs" method="POST">
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-  <label>
-
-    Title:
-    <input type="text" name="title" />
-  </label>
-
-  <label>
-    Year:
-    <input type="integer" name="year" />
-  </label>
-
-  <button>Create your song</button>
-</form>
+<% @type = "update" %>
+<%= render "songform", locals: {type: @type} %>

@@ -3,11 +3,14 @@ class SongsController < ApplicationController
   self.before_action(:find_song, only: [:destroy, :edit, :update])
 
   def new
+    @artist = Artist.find(params[:artist_id])
+    @song = Song.new
     render(:new)
   end
 
   def create
-    Song.create(song_params)
+    @artist = Artist.find(params[:artist_id])
+    @song = @artist.songs.create(song_params)
     redirect_to("/artists/#{params[:artist_id]}")
   end
 
@@ -32,10 +35,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    return {
-      title: params[:title],
-      year: params[:year],
-      artist_id: params[:artist_id]
-    }
+    params.require(:song).permit(:title, :year, :artist_id)
   end
 end

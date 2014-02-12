@@ -1,6 +1,6 @@
 <h1> Create a new User </h1>
 
-<% unless @user.nil? %>
+<% if @user.id == nil %>
   <div id="errors">
     <h3>ERRORS!</h3>
     <ul>
@@ -11,46 +11,6 @@
   </div>
 <% end %>
 
-<form action="/users" method="POST">
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-  <label>
-    First Name:
-    <input type="text" name="first_name" />
-  </label>
+<%= @type = "create" %>
 
-  <label>
-    Last Name:
-    <input type="text" name="last_name" />
-  </label>
-
-  <label>
-    Date of Birth: 
-    <input type="date" name="dob" />
-  </label>
-
-  <label>
-    Gender:
-    <label for="gender_male">M</label>
-    <input id="gender_male" type="radio" name="gender" value="M" />
-    <label for="gender_female">F</label>
-    <input id="gender_female" type="radio" name="gender" value="F" />
-  </label>
-
-  <label>
-    Email: 
-    <input type="text" name="email" />
-  </label>
-
-  <label>
-    Facebook Link: 
-    <input type="text" name="facebook_link" />
-  </label>
-
-  <label>
-    Password: 
-    <input type="password" name="password" />
-  </label>
-
-  <button>Welcome</button>
-</form>
-
+<%= render "userform", local {@type: type} %>

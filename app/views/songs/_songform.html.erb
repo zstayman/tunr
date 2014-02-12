@@ -1,0 +1,5 @@
+<%= form_for( [@artist, @song], url: {action: type}, html: {class: "nifty_form"}) do |f| %>
+  <h3>Name: <%= f.text_field :title %></h3>
+  <h3>Year: <%= f.number_field :year %></h3>
+  <%= f.submit "Update Song" %>
+<% end %>

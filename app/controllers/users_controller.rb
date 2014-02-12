@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
 
   def new
+    @user=User.new
   end
 
   def create    
@@ -26,8 +27,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to("/users/#{@user.id}")
+    @update_worked = @user.update(user_params)
+    if @update_worked
+      redirect_to("/users/#{@user.id}")
+    else
+      render(:edit)
+      # error message??
+    end
   end
 
   def edit
@@ -40,26 +46,12 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    
-    if params[:password].empty?
-      return {
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        dob: params[:dob],
-        gender: params[:gender],
-        email: params[:email],
-        facebook_link: params[:facebook_link],
-      }
+
+    if params[:user][:password].empty?
+      params[:user][:password] = @user.password
+      params.require(:user).permit(:first_name, :last_name, :dob, :gender, :email, :facebook_link, :password)
     else
-      return {
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        dob: Date.parse(params[:dob]),
-        gender: params[:gender],
-        email: params[:email],
-        facebook_link: params[:facebook_link],
-        password: params[:password]
-      }
+      params.require(:user).permit(:first_name, :last_name, :dob, :gender, :email, :facebook_link, :password)
     end
   end
 end

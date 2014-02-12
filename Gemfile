@@ -44,3 +44,6 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'pry-rails', group: [:development, :test]
+
+gem 'formtastic'
+# gem 'protected_attributes'

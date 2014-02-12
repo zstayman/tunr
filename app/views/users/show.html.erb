@@ -1,6 +1,6 @@
 <h1>Hi! <%= @user.first_name %> <%= @user.last_name %></h1>
 
-<a href="/users/<%= @user.id %>/edit">Update your Information</a>
+<%= link_to("Update your information", edit_user_path(@user.id)) %>
 
 <form action="/users/<%= @user.id %>" method="POST" >
   <input type="hidden" name="_method" value="DELETE" />

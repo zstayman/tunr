@@ -1,22 +1,3 @@
 <h1> Update an Artist </h1>
 
-<form action="/artists/<%= @artist.id %>" method="POST">
-  <input type="hidden" name="_method" value="patch">
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-  <label>
-    Name:
-    <input type="text" name="name" value="<%= @artist.name %>" />
-  </label>
-
-  <label>
-    Photo URL:
-    <input type="text" name="photo_url" value="<%= @artist.photo_url %>"/>
-  </label>
-
-  <label>
-    genre
-    <input type="text" name="genre" value="<%= @artist.genre %>"/>
-  </label>
-
-  <button>Update your artist</button>
-</form>
+<%= render "artistform" %>
