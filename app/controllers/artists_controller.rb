@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
 
-  self.before_action(:load_artist, only: [:show, :edit, :update, :destroy])
+  before_action(:load_artist, only: [:show, :edit, :update, :destroy])
 
   def index
     @artists = Artist.all
@@ -14,26 +14,28 @@ class ArtistsController < ApplicationController
   def create
     # binding.pry
     Artist.create(artist_params)
-    redirect_to("/artists")
+    redirect_to artists_path
   end
 
   def new
+    @type = "create"
     @artist=Artist.new
     
   end
 
   def edit
+    @type = "update"
     render(:edit)
   end
 
   def update
     @artist.update(artist_params)
-    redirect_to("/artists")
+    redirect_to artists_path
   end
 
   def destroy
     @artist.destroy
-    redirect_to("/artists")
+    redirect_to artists_path
   end
 
   private

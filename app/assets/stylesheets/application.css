@@ -10,27 +10,5 @@
  *
  *= require_self
  *= require_tree .
+ *= require_normalize
  */
-
-h1 {
-  font-family: Verdana;
-
-}
-
-.caption {
-  margin: auto;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-  color: #009933;
-}
-
-a:visited {
-  text-decoration: none;
-  color: #ff9933;
-}

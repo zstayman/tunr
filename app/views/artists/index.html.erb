@@ -10,10 +10,9 @@
   <p class="caption"><%= link_to("#{artist.name}", artist) %> <%= link_to("Edit Artist", edit_artist_path(artist.id) ) %></p>
 </div>
 
-<form action="/artists/<%= artist.id %>" method="POST" >
-  <input type="hidden" name="_method" value="DELETE" />
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-  <button>Delete</button>
+ <%= form_tag artist_path(artist), method: "delete" do %>
+    <%= submit_tag("Delete") %>
+  <% end %>
 
 </form>
 <% end %>

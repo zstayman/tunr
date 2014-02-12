@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  self.before_action :load_user, only: [:show, :destroy, :update, :edit]
+  before_action :load_user, only: [:show, :destroy, :update, :edit]
 
 
   def new
+    @type = "create"
     @user=User.new
   end
 
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     logger.debug @user.inspect
     if @user.valid?
-      redirect_to("/users/#{@user.id}")
+      redirect_to user_path(@user)
     else
       render(:new)
       # error message??
@@ -23,13 +24,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to("/")
+    redirect_to root_path
   end
 
   def update
     @update_worked = @user.update(user_params)
     if @update_worked
-      redirect_to("/users/#{@user.id}")
+      redirect_to user_path(@user)
     else
       render(:edit)
       # error message??
@@ -37,6 +38,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @type = "update"
   end
 
   private

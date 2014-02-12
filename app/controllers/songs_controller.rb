@@ -1,34 +1,40 @@
 class SongsController < ApplicationController
 
-  self.before_action(:find_song, only: [:destroy, :edit, :update])
+  before_action :load_artist
+  before_action(:find_song, only: [:destroy, :edit, :update])
+
 
   def new
-    @artist = Artist.find(params[:artist_id])
+    @type = "create"
     @song = Song.new
     render(:new)
   end
 
   def create
-    @artist = Artist.find(params[:artist_id])
     @song = @artist.songs.create(song_params)
-    redirect_to("/artists/#{params[:artist_id]}")
+    redirect_to artist_path(@artist)
   end
 
   def destroy
     @song.destroy
-    redirect_to("/artists/#{params[:artist_id]}")
+    redirect_to artist_path(@artist)
   end
 
   def edit
+    @type = "update"
     render(:edit)
   end
 
   def update
     @song.update(song_params)
-    redirect_to("/artists/#{params[:artist_id]}")
+    redirect_to artist_path(@artist)
   end
 
   private
+
+ def load_artist
+    return @artist = Artist.find(params[:artist_id])
+  end
 
   def find_song
     @song = Song.find(params[:id])

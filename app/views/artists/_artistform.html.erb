@@ -1,4 +1,4 @@
-<%= form_for @artist, url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
+<%= form_for @artist, url: {action: @type}, html: {class: "nifty_form"} do |f| %>
   <h3>Name: <%= f.text_field :name %></h3>
   <h3>Photo URL: <%= f.text_field :photo_url %></h3>
   <h3>Genre: <%= f.text_field :genre %></h3>
